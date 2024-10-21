@@ -1,0 +1,19 @@
+services:
+    spring:
+        build:
+            context: ./spring
+            dockerfile: Dockerfile
+        volumes:
+          - ./spring:/app
+        ports:
+          - 8080:8080
+        command: ./start-dev.sh
+    web:
+        build:
+            context: ./web
+            dockerfile: Dockerfile
+        volumes:
+          - ./web:/app
+        ports:
+          - 3000:3000
+        command: npm start
