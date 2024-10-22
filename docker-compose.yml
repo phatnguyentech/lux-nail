@@ -7,13 +7,28 @@ services:
           - ./spring:/app
         ports:
           - 8080:8080
+          - 5005:5005
         command: ./start-dev.sh
+        links:
+          - mysql
+    mysql:
+        image: mysql:9.0
+        ports:
+          - "3306:3306"
+        environment:
+          - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+          - MYSQL_DATABASE=spring
+        volumes:
+          - ${MYSQL_VOLUME_HOST_PATH}:/var/lib/mysql
     web:
         build:
             context: ./web
             dockerfile: Dockerfile
         volumes:
+          - /app/node_modules
           - ./web:/app
         ports:
           - 3000:3000
         command: npm start
+        links:
+          - spring

@@ -24,11 +24,11 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-bootRun {
-	jvmArgs = [
-			'-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000'
-	]
-}
+//bootRun {
+//	jvmArgs = [
+//			'-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005'
+//	]
+//}
 
 tasks.named('test') {
 	useJUnitPlatform()
